@@ -7,7 +7,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.codepath.bestsellerlistapp"
+        applicationId "com.codepath.CS388Project3"
         minSdk 21
         targetSdk 32
         versionCode 1
