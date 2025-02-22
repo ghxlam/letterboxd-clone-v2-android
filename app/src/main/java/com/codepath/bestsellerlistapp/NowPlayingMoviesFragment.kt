@@ -16,7 +16,6 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.Headers
-import org.json.JSONObject
 
 private const val API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
 
