@@ -27,6 +27,7 @@ The following **optional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 <img src='https://i.imgur.com/tVwd41l.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+https://i.imgur.com/tVwd41l.gif
 
 GIF created with ...  
 [ScreenToGif](https://www.screentogif.com/) for Windows
