@@ -19,13 +19,13 @@ import okhttp3.Headers
 
 private const val API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
 
-class NowPlayingMoviesFragment : Fragment(), OnListFragmentInteractionListener {
+class AiringTodayTVShowsFragment : Fragment(), OnListFragmentInteractionListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_now_playing_movies_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_airing_today_tv_shows_list, container, false)
         val progressBar = view.findViewById<View>(R.id.progress) as ContentLoadingProgressBar
         val recyclerView = view.findViewById<View>(R.id.list) as RecyclerView
         val context = view.context
@@ -41,9 +41,8 @@ class NowPlayingMoviesFragment : Fragment(), OnListFragmentInteractionListener {
         val params = RequestParams()
         params["api_key"] = API_KEY
 
-        // The Movie Database now_playing endpoint
         client[
-            "https://api.themoviedb.org/3/movie/now_playing",
+            "https://api.themoviedb.org/3/tv/airing_today",
             params,
             object : JsonHttpResponseHandler() {
 
@@ -55,14 +54,14 @@ class NowPlayingMoviesFragment : Fragment(), OnListFragmentInteractionListener {
                     progressBar.hide()
 
                     val resultsJSONArray = json.jsonObject.getJSONArray("results")
-                    val moviesRawJSON: String = resultsJSONArray.toString()
+                    val tvShowsRawJSON: String = resultsJSONArray.toString()
 
                     val gson = Gson()
-                    val arrayMovieType = object : TypeToken<List<Movie>>() {}.type
-                    val models: List<Movie> = gson.fromJson(moviesRawJSON, arrayMovieType)
-                    recyclerView.adapter = NowPlayingMoviesRecyclerViewAdapter(models, this@NowPlayingMoviesFragment)
+                    val arrayTVShowType = object : TypeToken<List<TVShow>>() {}.type
+                    val models: List<TVShow> = gson.fromJson(tvShowsRawJSON, arrayTVShowType)
+                    recyclerView.adapter = AiringTodayTVShowsRecyclerViewAdapter(models, this@AiringTodayTVShowsFragment)
 
-                    Log.d("NowPlayingMoviesFrag", "response successful")
+                    Log.d("AiringTodayTVShowsFrag", "Response successful")
                 }
 
                 override fun onFailure(
@@ -73,14 +72,14 @@ class NowPlayingMoviesFragment : Fragment(), OnListFragmentInteractionListener {
                 ) {
                     progressBar.hide()
                     t?.message?.let {
-                        Log.e("NowPlayingMoviesFrag", errorResponse)
+                        Log.e("AiringTodayTVShowsFrag", errorResponse)
                     }
                 }
             }
         ]
     }
 
-    override fun onItemClick(item: Movie) {
-        Toast.makeText(context, "Selected Movie: " + item.title, Toast.LENGTH_LONG).show()
+    override fun onItemClick(item: TVShow) {
+        Toast.makeText(context, "Selected TV Show: " + item.title, Toast.LENGTH_LONG).show()
     }
 }

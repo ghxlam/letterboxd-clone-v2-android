@@ -2,8 +2,8 @@ package com.codepath.bestsellerlistapp
 
 import com.google.gson.annotations.SerializedName
 
-class Movie {
-    @SerializedName("title")
+class TVShow {
+    @SerializedName("name")
     var title: String? = null
 
     @SerializedName("poster_path")
@@ -11,4 +11,13 @@ class Movie {
 
     @SerializedName("overview")
     var description: String? = null
+
+    @SerializedName("first_air_date")
+    var releaseDate: String? = null
+
+    @SerializedName("vote_average")
+    var rating: String? = null
+
+    @SerializedName("original_language")
+    var language: String? = null
 }
